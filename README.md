@@ -1,26 +1,12 @@
-# Rinvex Statistics
+# Elastik Statistics
 
-⚠️ This package is abandoned and no longer maintained. No replacement package was suggested. ⚠️
-
-👉 If you are interested to step on as the main maintainer of this package, please [reach out to me](https://twitter.com/omranic)!
+Forked from Rinvex Statistics that was abandoned. Primarily for our own use but making it available for anyone else to use.
 
 ---
 
-**Rinvex Statistics** is a lightweight, yet detailed package for tracking and recording user visits across your Laravel application. With only one simple query per request, important data is being stored, and later a cronjob crush numbers to extract meaningful stories from within the haystack.
+**Elastik Statistics** is a lightweight, yet detailed package for tracking and recording user visits across your Laravel application. With only one simple query per request, important data is being stored, and later a cronjob crush numbers to extract meaningful stories from within the haystack.
 
-Unlike other tracking packages that seriously damage your project's performance (yes, I mean that package you know 😅), our package takes a different approach by just executing only one query at the end of each request after the response is being served to the user, through the `terminate` method of an automatically attached middleware, and then later on it uses the raw data previously inserted in the database to extract meaningfull numbers. This is done based on a random lottery request, or through a scheduled job (recommended) that could be queued to offload the heavy crunching work.
-
-**Rinvex Statistics** tracks each -valid- request, meaning only requests that goes through routing pipeline, which also means that any wrong URL that results in `NotFoundHttpException` will not be tracked. If requested page has uncaught exceptions, it won't be tracked as well. It track user's logged in account (if any), session of all users and guests (if any), device (family, model, brand), platform (family, version), browser (agent, kind, family, version), path, route (action, middleware, parameters), host, protocol, ip address, language, status codes, and many more, and still we've plenty of awesome features planned for the future.
-
-With such a huge collected data, the `statistics_requests` database table will noticeably increase in size specially if you've a lot of visits, that's why it's recommended to clean it periodically. Other important data will stay still in their respective tables, normalized and without any performance issues, so only this table need to be cleaned. By default that will be done automatically every month.
-
-The default implementation of **Rinvex Statistics** comes with zero configuration out-of-the-box, which means it just works once installed. But it's recommended to change the defaults and disable the "Statistics Crunching Lottery" from config file, and replace it with a [Scheduled Tasks](https://laravel.com/docs/master/scheduling) for even better performance if you've large number of visits. See [Usage](#usage) for details.
-
-[![Packagist](https://img.shields.io/packagist/v/rinvex/laravel-statistics.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/rinvex/laravel-statistics)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/laravel-statistics.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/laravel-statistics/)
-[![Travis](https://img.shields.io/travis/rinvex/laravel-statistics.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/rinvex/laravel-statistics)
-[![StyleCI](https://styleci.io/repos/118045101/shield)](https://styleci.io/repos/118045101)
-[![License](https://img.shields.io/packagist/l/rinvex/laravel-statistics.svg?label=License&style=flat-square)](https://github.com/rinvex/laravel-statistics/blob/develop/LICENSE)
+The default implementation of **Elastik Statistics** comes with zero configuration out-of-the-box, which means it just works once installed. But it's recommended to change the defaults and disable the "Statistics Crunching Lottery" from config file, and replace it with a [Scheduled Tasks](https://laravel.com/docs/master/scheduling) for even better performance if you've large number of visits. See [Usage](#usage) for details.
 
 
 ## Installation
