@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Statistics\Console\Commands;
+namespace Elastik\Statistics\Console\Commands;
 
 use Illuminate\Console\Command;
 
@@ -13,14 +13,14 @@ class RollbackCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'rinvex:rollback:statistics {--f|force : Force the operation to run when in production.}';
+    protected $signature = 'elastik:rollback:statistics {--f|force : Force the operation to run when in production.}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Rollback Rinvex Statistics Tables.';
+    protected $description = 'Rollback Elastik Statistics Tables.';
 
     /**
      * Execute the console command.
@@ -31,9 +31,9 @@ class RollbackCommand extends Command
     {
         $this->alert($this->description);
 
-        $path = config('rinvex.statistics.autoload_migrations') ?
-            'vendor/rinvex/laravel-statistics/database/migrations' :
-            'database/migrations/rinvex/laravel-statistics';
+        $path = config('elastik.statistics.autoload_migrations') ?
+            'vendor/elastik/laravel-statistics/database/migrations' :
+            'database/migrations/elastik/laravel-statistics';
 
         if (file_exists($path)) {
             $this->call('migrate:reset', [
@@ -41,7 +41,7 @@ class RollbackCommand extends Command
                 '--force' => $this->option('force'),
             ]);
         } else {
-            $this->warn('No migrations found! Consider publish them first: <fg=green>php artisan rinvex:publish:statistics</>');
+            $this->warn('No migrations found! Consider publish them first: <fg=green>php artisan elastik:publish:statistics</>');
         }
 
         $this->line('');

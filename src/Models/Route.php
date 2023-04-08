@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Statistics\Models;
+namespace Elastik\Statistics\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Support\Traits\ValidatingTrait;
@@ -71,7 +71,7 @@ class Route extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->setTable(config('rinvex.statistics.tables.routes'));
+        $this->setTable(config('elastik.statistics.tables.routes'));
         $this->mergeRules([
             'name' => 'required|string',
             'action' => 'required|string',
@@ -90,6 +90,6 @@ class Route extends Model
      */
     public function requests(): HasMany
     {
-        return $this->hasMany(config('rinvex.statistics.models.request'), 'route_id', 'id');
+        return $this->hasMany(config('elastik.statistics.models.request'), 'route_id', 'id');
     }
 }

@@ -15,7 +15,7 @@ class CreateStatisticsRequestsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create(config('rinvex.statistics.tables.requests'), function (Blueprint $table) {
+        Schema::create(config('elastik.statistics.tables.requests'), function (Blueprint $table) {
             // Columns
             $table->increments('id');
             $table->integer('route_id')->unsigned();
@@ -39,17 +39,17 @@ class CreateStatisticsRequestsTable extends Migration
             $table->timestamp('created_at')->nullable();
 
             // Indexes
-            $table->foreign('route_id')->references('id')->on(config('rinvex.statistics.tables.routes'))
+            $table->foreign('route_id')->references('id')->on(config('elastik.statistics.tables.routes'))
                   ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('agent_id')->references('id')->on(config('rinvex.statistics.tables.agents'))
+            $table->foreign('agent_id')->references('id')->on(config('elastik.statistics.tables.agents'))
                   ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('device_id')->references('id')->on(config('rinvex.statistics.tables.devices'))
+            $table->foreign('device_id')->references('id')->on(config('elastik.statistics.tables.devices'))
                   ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('platform_id')->references('id')->on(config('rinvex.statistics.tables.platforms'))
+            $table->foreign('platform_id')->references('id')->on(config('elastik.statistics.tables.platforms'))
                   ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('path_id')->references('id')->on(config('rinvex.statistics.tables.paths'))
+            $table->foreign('path_id')->references('id')->on(config('elastik.statistics.tables.paths'))
                   ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('geoip_id')->references('id')->on(config('rinvex.statistics.tables.geoips'))
+            $table->foreign('geoip_id')->references('id')->on(config('elastik.statistics.tables.geoips'))
                   ->onDelete('cascade')->onUpdate('cascade');
         });
     }
@@ -61,6 +61,6 @@ class CreateStatisticsRequestsTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(config('rinvex.statistics.tables.requests'));
+        Schema::dropIfExists(config('elastik.statistics.tables.requests'));
     }
 }

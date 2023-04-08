@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Statistics\Jobs;
+namespace Elastik\Statistics\Jobs;
 
 use Exception;
 use UAParser\Parser;
@@ -29,7 +29,7 @@ class CrunchStatistics implements ShouldQueue
      */
     public function handle(): void
     {
-        app('rinvex.statistics.datum')->each(function ($item) {
+        app('elastik.statistics.datum')->each(function ($item) {
             try {
                 $symfonyRequest = SymfonyRequest::create($item['uri'], $item['server']['REQUEST_METHOD'], $item['input'] ?? [], [], [], $item['server']);
                 $symfonyRequest->overrideGlobals();
@@ -50,7 +50,7 @@ class CrunchStatistics implements ShouldQueue
                     return ($item = collect($item)) && $item->contains('variable') ? $tokens[$item[3]] = $item[2] : null;
                 });
 
-                $route = app('rinvex.statistics.route')->firstOrCreate([
+                $route = app('elastik.statistics.route')->firstOrCreate([
                     'name' => $laravelRoute->getName() ?: $laravelRoute->uri(),
                 ], [
                     'path' => $laravelRoute->uri(),
@@ -59,25 +59,25 @@ class CrunchStatistics implements ShouldQueue
                     'parameters' => $tokens ?: null,
                 ]);
 
-                $agent = app('rinvex.statistics.agent')->firstOrCreate([
+                $agent = app('elastik.statistics.agent')->firstOrCreate([
                     'name' => $agent->getUserAgent(),
                     'kind' => $kind,
                     'family' => $UAParser->ua->family,
                     'version' => $UAParser->ua->toVersion(),
                 ]);
 
-                $device = app('rinvex.statistics.device')->firstOrCreate([
+                $device = app('elastik.statistics.device')->firstOrCreate([
                     'family' => $UAParser->device->family,
                     'model' => $UAParser->device->model,
                     'brand' => $UAParser->device->brand,
                 ]);
 
-                $platform = app('rinvex.statistics.platform')->firstOrCreate([
+                $platform = app('elastik.statistics.platform')->firstOrCreate([
                     'family' => $UAParser->os->family,
                     'version' => $UAParser->os->toVersion(),
                 ]);
 
-                $path = app('rinvex.statistics.path')->firstOrCreate([
+                $path = app('elastik.statistics.path')->firstOrCreate([
                     'host' => $laravelRequest->getHost(),
                     'path' => $laravelRequest->decodedPath(),
                     'method' => $laravelRequest->getMethod(),
@@ -87,7 +87,7 @@ class CrunchStatistics implements ShouldQueue
                     'parameters' => $laravelRoute->parameters() ?: null,
                 ]);
 
-                $geoip = app('rinvex.statistics.geoip')->firstOrCreate([
+                $geoip = app('elastik.statistics.geoip')->firstOrCreate([
                     'client_ip' => $ip = $laravelRequest->getClientIp(),
                     'latitude' => geoip($ip)->getAttribute('lat'),
                     'longitude' => geoip($ip)->getAttribute('lon'),
@@ -124,7 +124,7 @@ class CrunchStatistics implements ShouldQueue
                     'created_at' => $item['created_at'],
                 ];
 
-                app('rinvex.statistics.request')->create($requestDetails);
+                app('elastik.statistics.request')->create($requestDetails);
                 $item->delete();
             } catch (Exception $exception) {
             }

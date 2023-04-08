@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Statistics\Http\Middleware;
+namespace Elastik\Statistics\Http\Middleware;
 
 use Closure;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Rinvex\Statistics\Jobs\CrunchStatistics;
-use Rinvex\Statistics\Jobs\CleanStatisticsRequests;
+use Elastik\Statistics\Jobs\CrunchStatistics;
+use Elastik\Statistics\Jobs\CleanStatisticsRequests;
 
 class TrackStatistics
 {
@@ -39,7 +39,7 @@ class TrackStatistics
     {
         $currentUser = $request->user();
 
-        app('rinvex.statistics.datum')->fill([
+        app('elastik.statistics.datum')->fill([
             'session_id' => $request->session()->getId(),
             'user_id' => $currentUser?->getKey(),
             'user_type' => $currentUser?->getMorphClass(),
@@ -47,7 +47,7 @@ class TrackStatistics
             'uri' => $request->getUri(),
             'method' => $request->getMethod(),
             'server' => $request->server() ?: null,
-            'input' => $request->input() ? $request->except(config('rinvex.statistics.exclude_input_fields')) : null,
+            'input' => $request->input() ? $request->except(config('elastik.statistics.exclude_input_fields')) : null,
             'created_at' => Carbon::now(),
         ])->save();
 
@@ -69,7 +69,7 @@ class TrackStatistics
      */
     protected function configHitsLottery(): bool
     {
-        $config = config('rinvex.statistics.lottery');
+        $config = config('elastik.statistics.lottery');
 
         return $config ? random_int(1, $config[1]) <= $config[0] : false;
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Statistics\Models;
+namespace Elastik\Statistics\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -103,7 +103,7 @@ class Request extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->setTable(config('rinvex.statistics.tables.requests'));
+        $this->setTable(config('elastik.statistics.tables.requests'));
         $this->mergeRules([
             'route_id' => 'required|integer',
             'agent_id' => 'required|integer',
@@ -154,7 +154,7 @@ class Request extends Model
      */
     public function route(): BelongsTo
     {
-        return $this->belongsTo(config('rinvex.statistics.models.route'), 'route_id', 'id', 'route');
+        return $this->belongsTo(config('elastik.statistics.models.route'), 'route_id', 'id', 'route');
     }
 
     /**
@@ -164,7 +164,7 @@ class Request extends Model
      */
     public function path(): BelongsTo
     {
-        return $this->belongsTo(config('rinvex.statistics.models.path'), 'path_id', 'id', 'path');
+        return $this->belongsTo(config('elastik.statistics.models.path'), 'path_id', 'id', 'path');
     }
 
     /**
@@ -174,7 +174,7 @@ class Request extends Model
      */
     public function agent(): BelongsTo
     {
-        return $this->belongsTo(config('rinvex.statistics.models.agent'), 'agent_id', 'id', 'agent');
+        return $this->belongsTo(config('elastik.statistics.models.agent'), 'agent_id', 'id', 'agent');
     }
 
     /**
@@ -184,7 +184,7 @@ class Request extends Model
      */
     public function geoip(): BelongsTo
     {
-        return $this->belongsTo(config('rinvex.statistics.models.geoip'), 'geoip_id', 'id', 'geoip');
+        return $this->belongsTo(config('elastik.statistics.models.geoip'), 'geoip_id', 'id', 'geoip');
     }
 
     /**
@@ -194,7 +194,7 @@ class Request extends Model
      */
     public function device(): BelongsTo
     {
-        return $this->belongsTo(config('rinvex.statistics.models.device'), 'device_id', 'id', 'device');
+        return $this->belongsTo(config('elastik.statistics.models.device'), 'device_id', 'id', 'device');
     }
 
     /**
@@ -204,7 +204,7 @@ class Request extends Model
      */
     public function platform(): BelongsTo
     {
-        return $this->belongsTo(config('rinvex.statistics.models.platform'), 'platform_id', 'id', 'platform');
+        return $this->belongsTo(config('elastik.statistics.models.platform'), 'platform_id', 'id', 'platform');
     }
 
     /**

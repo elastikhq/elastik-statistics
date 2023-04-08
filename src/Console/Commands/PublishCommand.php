@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Statistics\Console\Commands;
+namespace Elastik\Statistics\Console\Commands;
 
 use Illuminate\Console\Command;
 
@@ -13,14 +13,14 @@ class PublishCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'rinvex:publish:statistics {--f|force : Overwrite any existing files.} {--r|resource=* : Specify which resources to publish.}';
+    protected $signature = 'elastik:publish:statistics {--f|force : Overwrite any existing files.} {--r|resource=* : Specify which resources to publish.}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Publish Rinvex Statistics Resources.';
+    protected $description = 'Publish Elastik Statistics Resources.';
 
     /**
      * Execute the console command.
@@ -32,7 +32,7 @@ class PublishCommand extends Command
         $this->alert($this->description);
 
         collect($this->option('resource') ?: ['config', 'migrations'])->each(function ($resource) {
-            $this->call('vendor:publish', ['--tag' => "rinvex/statistics::{$resource}", '--force' => $this->option('force')]);
+            $this->call('vendor:publish', ['--tag' => "elastik/statistics::{$resource}", '--force' => $this->option('force')]);
         });
 
         $this->line('');

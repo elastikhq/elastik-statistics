@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Statistics\Models;
+namespace Elastik\Statistics\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Support\Traits\ValidatingTrait;
@@ -67,7 +67,7 @@ class Device extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->setTable(config('rinvex.statistics.tables.devices'));
+        $this->setTable(config('elastik.statistics.tables.devices'));
         $this->mergeRules([
             'family' => 'required|string',
             'model' => 'nullable|string',
@@ -84,6 +84,6 @@ class Device extends Model
      */
     public function requests(): HasMany
     {
-        return $this->hasMany(config('rinvex.statistics.models.request'), 'device_id', 'id');
+        return $this->hasMany(config('elastik.statistics.models.request'), 'device_id', 'id');
     }
 }

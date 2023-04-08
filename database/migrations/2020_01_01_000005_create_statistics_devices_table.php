@@ -15,7 +15,7 @@ class CreateStatisticsDevicesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create(config('rinvex.statistics.tables.devices'), function (Blueprint $table) {
+        Schema::create(config('elastik.statistics.tables.devices'), function (Blueprint $table) {
             // Columns
             $table->increments('id');
             $table->string('family');
@@ -32,6 +32,6 @@ class CreateStatisticsDevicesTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(config('rinvex.statistics.tables.devices'));
+        Schema::dropIfExists(config('elastik.statistics.tables.devices'));
     }
 }

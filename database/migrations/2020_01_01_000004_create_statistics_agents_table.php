@@ -15,7 +15,7 @@ class CreateStatisticsAgentsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create(config('rinvex.statistics.tables.agents'), function (Blueprint $table) {
+        Schema::create(config('elastik.statistics.tables.agents'), function (Blueprint $table) {
             // Columns
             $table->increments('id');
             $table->string('name');
@@ -33,6 +33,6 @@ class CreateStatisticsAgentsTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(config('rinvex.statistics.tables.agents'));
+        Schema::dropIfExists(config('elastik.statistics.tables.agents'));
     }
 }

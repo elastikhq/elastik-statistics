@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Statistics\Models;
+namespace Elastik\Statistics\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Support\Traits\ValidatingTrait;
@@ -69,7 +69,7 @@ class Agent extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->setTable(config('rinvex.statistics.tables.agents'));
+        $this->setTable(config('elastik.statistics.tables.agents'));
         $this->mergeRules([
             'name' => 'required|string|strip_tags|max:150',
             'kind' => 'required|string|strip_tags|max:150',
@@ -87,6 +87,6 @@ class Agent extends Model
      */
     public function requests(): HasMany
     {
-        return $this->hasMany(config('rinvex.statistics.models.request'), 'agent_id', 'id');
+        return $this->hasMany(config('elastik.statistics.models.request'), 'agent_id', 'id');
     }
 }

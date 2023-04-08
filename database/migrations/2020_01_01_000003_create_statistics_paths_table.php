@@ -15,7 +15,7 @@ class CreateStatisticsPathsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create(config('rinvex.statistics.tables.paths'), function (Blueprint $table) {
+        Schema::create(config('elastik.statistics.tables.paths'), function (Blueprint $table) {
             // Columns
             $table->increments('id');
             $table->string('host');
@@ -37,6 +37,6 @@ class CreateStatisticsPathsTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(config('rinvex.statistics.tables.paths'));
+        Schema::dropIfExists(config('elastik.statistics.tables.paths'));
     }
 }

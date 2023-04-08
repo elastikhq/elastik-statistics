@@ -46,7 +46,7 @@
         },
         {
             "name": "The Generous Laravel Community",
-            "homepage": "https://github.com/rinvex/laravel-statistics/contributors"
+            "homepage": "https://github.com/elastik/laravel-statistics/contributors"
         }
     ],
     "require": {
@@ -74,12 +74,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Rinvex\\Statistics\\": "src/"
+            "Elastik\\Statistics\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Rinvex\\Statistics\\Tests\\": "tests"
+            "Elastik\\Statistics\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -93,7 +93,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Rinvex\\Statistics\\Providers\\StatisticsServiceProvider"
+                "Elastik\\Statistics\\Providers\\StatisticsServiceProvider"
             ]
         }
     },

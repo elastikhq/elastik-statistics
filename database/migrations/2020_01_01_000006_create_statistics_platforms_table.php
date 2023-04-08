@@ -15,7 +15,7 @@ class CreateStatisticsPlatformsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create(config('rinvex.statistics.tables.platforms'), function (Blueprint $table) {
+        Schema::create(config('elastik.statistics.tables.platforms'), function (Blueprint $table) {
             // Columns
             $table->increments('id');
             $table->string('family');
@@ -31,6 +31,6 @@ class CreateStatisticsPlatformsTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(config('rinvex.statistics.tables.platforms'));
+        Schema::dropIfExists(config('elastik.statistics.tables.platforms'));
     }
 }

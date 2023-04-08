@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Statistics\Models;
+namespace Elastik\Statistics\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Support\Traits\ValidatingTrait;
@@ -65,7 +65,7 @@ class Platform extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->setTable(config('rinvex.statistics.tables.platforms'));
+        $this->setTable(config('elastik.statistics.tables.platforms'));
         $this->mergeRules([
             'family' => 'required|string',
             'version' => 'nullable|string',
@@ -81,6 +81,6 @@ class Platform extends Model
      */
     public function requests(): HasMany
     {
-        return $this->hasMany(config('rinvex.statistics.models.request'), 'platform_id', 'id');
+        return $this->hasMany(config('elastik.statistics.models.request'), 'platform_id', 'id');
     }
 }

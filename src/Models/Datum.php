@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Statistics\Models;
+namespace Elastik\Statistics\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -80,7 +80,7 @@ class Datum extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->setTable(config('rinvex.statistics.tables.data'));
+        $this->setTable(config('elastik.statistics.tables.data'));
         $this->mergeRules([
             'session_id' => 'required|string',
             'user_id' => 'nullable|integer',

@@ -21,14 +21,14 @@ return [
 
     // Statistics Models
     'models' => [
-        'path' => \Rinvex\Statistics\Models\Path::class,
-        'datum' => \Rinvex\Statistics\Models\Datum::class,
-        'geoip' => \Rinvex\Statistics\Models\Geoip::class,
-        'route' => \Rinvex\Statistics\Models\Route::class,
-        'agent' => \Rinvex\Statistics\Models\Agent::class,
-        'device' => \Rinvex\Statistics\Models\Device::class,
-        'request' => \Rinvex\Statistics\Models\Request::class,
-        'platform' => \Rinvex\Statistics\Models\Platform::class,
+        'path' => \Elastik\Statistics\Models\Path::class,
+        'datum' => \Elastik\Statistics\Models\Datum::class,
+        'geoip' => \Elastik\Statistics\Models\Geoip::class,
+        'route' => \Elastik\Statistics\Models\Route::class,
+        'agent' => \Elastik\Statistics\Models\Agent::class,
+        'device' => \Elastik\Statistics\Models\Device::class,
+        'request' => \Elastik\Statistics\Models\Request::class,
+        'platform' => \Elastik\Statistics\Models\Platform::class,
     ],
 
     /*

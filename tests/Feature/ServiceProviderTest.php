@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Statistics\Tests\Feature;
+namespace Elastik\Statistics\Tests\Feature;
 
 use ReflectionClass;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Container\Container;
 use Illuminate\Support\ServiceProvider;
-use Rinvex\Statistics\Providers\StatisticsServiceProvider;
+use Elastik\Statistics\Providers\StatisticsServiceProvider;
 
 class ServiceProviderTest extends TestCase
 {

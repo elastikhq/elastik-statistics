@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Statistics\Models;
+namespace Elastik\Statistics\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Support\Traits\ValidatingTrait;
@@ -81,7 +81,7 @@ class Geoip extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->setTable(config('rinvex.statistics.tables.geoips'));
+        $this->setTable(config('elastik.statistics.tables.geoips'));
         $this->mergeRules([
             'client_ip' => 'required|string',
             'latitude' => 'required|string',
@@ -105,6 +105,6 @@ class Geoip extends Model
      */
     public function requests(): HasMany
     {
-        return $this->hasMany(config('rinvex.statistics.models.request'), 'geoip_id', 'id');
+        return $this->hasMany(config('elastik.statistics.models.request'), 'geoip_id', 'id');
     }
 }

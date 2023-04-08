@@ -1,6 +1,6 @@
 # Elastik Statistics
 
-Forked from Rinvex Statistics that was abandoned. Primarily for our own use but making it available for anyone else to use.
+Forked from Elastik Statistics that was abandoned. Primarily for our own use but making it available for anyone else to use.
 
 ---
 
@@ -13,17 +13,17 @@ The default implementation of **Elastik Statistics** comes with zero configurati
 
 1. Install the package via composer:
     ```shell
-    composer require rinvex/laravel-statistics
+    composer require elastik/laravel-statistics
     ```
 
 2. Publish resources (migrations and config files):
     ```shell
-    php artisan rinvex:publish:statistics
+    php artisan elastik:publish:statistics
     ```
 
 3. Execute migrations via the following command:
     ```shell
-    php artisan rinvex:migrate:statistics
+    php artisan elastik:migrate:statistics
     ```
 
 4. Done!
@@ -31,22 +31,22 @@ The default implementation of **Elastik Statistics** comes with zero configurati
 
 ## Usage
 
-Well, this is the fun part! **Rinvex Statistics** has no usage instructions, because it just works! You install it and you are done! Seriously!!
+Well, this is the fun part! **Elastik Statistics** has no usage instructions, because it just works! You install it and you are done! Seriously!!
 
 Anyway, as a recommended performance tweak go ahead and do the following (optionally):
 
 1. Publish config file via the following command:
     ```
-    php artisan rinvex:publish:statistics
+    php artisan elastik:publish:statistics
     ```
 
 2. Disable the "Statistics Crunching Lottery" from config file.
 
-3. Follow the default Laravel documentation about [Scheduled Tasks](https://laravel.com/docs/master/scheduling), then schedule both `\Rinvex\Statistics\Jobs\CrunchStatistics` and `\Rinvex\Statistics\Jobs\CleanStatisticsRequests` jobs at whatever intervals you see appropriate.
+3. Follow the default Laravel documentation about [Scheduled Tasks](https://laravel.com/docs/master/scheduling), then schedule both `\Elastik\Statistics\Jobs\CrunchStatistics` and `\Elastik\Statistics\Jobs\CleanStatisticsRequests` jobs at whatever intervals you see appropriate.
 
 4. Enjoy!
 
-> **Note:** **Rinvex Statistics** has a `\Rinvex\Statistics\Http\Middleware\TrackStatistics` middleware that attach itself automatically to the `web` middleware group, that's how it works out-of-the-box with zero configuration.
+> **Note:** **Elastik Statistics** has a `\Elastik\Statistics\Http\Middleware\TrackStatistics` middleware that attach itself automatically to the `web` middleware group, that's how it works out-of-the-box with zero configuration.
 
 ### Data retrieval
 
@@ -54,21 +54,21 @@ You may need to build your own frontend interface to browse statistics, and for 
 
 All eloquent models are self explainatory:
 
-- `\Rinvex\Statistics\Models\Agent` browser agent model
-- `\Rinvex\Statistics\Models\Datum` raw statistics data (to be crunched)
-- `\Rinvex\Statistics\Models\Device` user device model
-- `\Rinvex\Statistics\Models\Path` request path model
-- `\Rinvex\Statistics\Models\Platform` user platform model
-- `\Rinvex\Statistics\Models\Request` request data model (to be cleaned periodically)
-- `\Rinvex\Statistics\Models\Route` request route details model
+- `\Elastik\Statistics\Models\Agent` browser agent model
+- `\Elastik\Statistics\Models\Datum` raw statistics data (to be crunched)
+- `\Elastik\Statistics\Models\Device` user device model
+- `\Elastik\Statistics\Models\Path` request path model
+- `\Elastik\Statistics\Models\Platform` user platform model
+- `\Elastik\Statistics\Models\Request` request data model (to be cleaned periodically)
+- `\Elastik\Statistics\Models\Route` request route details model
 
 All models are bound to the [Service Container](https://laravel.com/docs/master/container) so you can swap easily from anywhere in your application. In addition to the default normal way of using these models explicitely, you can use their respective service names as in the following example:
 
 ```php
 // Find first browser agent (any of these methods are valid and equivalent)
-app('rinvex.statistics.agent')->first();
-new \Rinvex\Statistics\Models\Agent::first();
-app(\Rinvex\Statistics\Contracts\AgentContract::class)->first();
+app('elastik.statistics.agent')->first();
+new \Elastik\Statistics\Models\Agent::first();
+app(\Elastik\Statistics\Contracts\AgentContract::class)->first();
 ```
 
 Same for all other eloquent models.
@@ -114,7 +114,7 @@ This means there's 12 visits to the admin dashboard roles management of the **te
 This table could be used as a visit counter for all your pages. To retrieve and display page views you can use the following code for example:
 
 ```php
-$pageViews = app('rinvex.statistics.path')->where('path', request()->decodedPath())->first()->count;
+$pageViews = app('elastik.statistics.path')->where('path', request()->decodedPath())->first()->count;
 ```
 
 And simply use the `$pageViews` variable anywhere in your views or controllers, or anywhere else. That way you have automatic visit counter for all your project's pages, very useful and performant, ready at your fingertips. You can add `host` contraint in case you have wildcard subdomains enabled.
@@ -148,21 +148,12 @@ This is the most comprehensive table that records every single request made to t
 > **Notes:**
 > - As a final note, this package is a data hord, and it doesn't actually do much of the math that could be done on such a valuable gathered data, so it's up to your imagination to utilize it however you see fits your goals. Implementation details is up to you.
 > - We didn't explain the `statistics_data` table since it's used for temporary raw data storage until it's being crunched and processed by the package, so you should **NOT** care or mess with that table. It's used internally by the package and has no real end-user usage.
-> - The `\Rinvex\Statistics\Models\Request` model has relationships to all related data such as `agent`, `device`, `path`, `platform`, and `route`. So once you grab a request instance you can access any of it's relationships as you normaly do with [Eloquent Relationships](https://laravel.com/docs/master/eloquent-relationships) like so: `$statisticsRequest->agent->version` or `$statisticsRequest->platform->family`.
+> - The `\Elastik\Statistics\Models\Request` model has relationships to all related data such as `agent`, `device`, `path`, `platform`, and `route`. So once you grab a request instance you can access any of it's relationships as you normaly do with [Eloquent Relationships](https://laravel.com/docs/master/eloquent-relationships) like so: `$statisticsRequest->agent->version` or `$statisticsRequest->platform->family`.
 
 
 ## Changelog
 
 Refer to the [Changelog](CHANGELOG.md) for a full history of the project.
-
-
-## Support
-
-The following support channels are available at your fingertips:
-
-- [Chat on Slack](https://bit.ly/rinvex-slack)
-- [Help on Email](mailto:help@rinvex.com)
-- [Follow on Twitter](https://twitter.com/rinvex)
 
 
 ## Contributing & Protocols
@@ -180,16 +171,10 @@ Bug reports, feature requests, and pull requests are very welcome.
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within this project, please send an e-mail to [help@rinvex.com](help@rinvex.com). All security vulnerabilities will be promptly impressioned.
-
-
-## About Rinvex
-
-Rinvex is a software solutions startup, specialized in integrated enterprise solutions for SMEs established in Alexandria, Egypt since June 2016. We believe that our drive The Value, The Reach, and The Impact is what differentiates us and unleash the endless possibilities of our philosophy through the power of software. We like to call it Innovation At The Speed Of Life. That’s how we do our share of advancing humanity.
-
+If you discover a security vulnerability within this project, please send an e-mail to [admin@elastik.work](admin@elastik.work). All security vulnerabilities will be promptly impressioned.
 
 ## License
 
 This software is released under [The MIT License (MIT)](LICENSE).
 
-(c) 2016-2022 Rinvex LLC, Some rights reserved.
+(c) 2016-2022 Elastik Limited, Some rights reserved.
