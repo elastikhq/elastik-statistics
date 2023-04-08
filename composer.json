@@ -1,11 +1,12 @@
 {
-    "name": "rinvex/laravel-statistics",
-    "description": "Rinvex Statistics is a lightweight, yet detailed package for tracking and recording user visits across your Laravel application. With only one simple query per request, important data is being stored, and later a cronjob crush numbers to extract meaningful stories from within the haystack.",
+    "name": "elastik/laravel-statistics",
+    "description": "Elastik Statistics is a lightweight, yet detailed package for tracking and recording user visits across your Laravel application. With only one simple query per request, important data is being stored, and later a cronjob crush numbers to extract meaningful stories from within the haystack.",
     "type": "library",
     "keywords": [
         "user",
         "model",
         "rinvex",
+        "elastik",
         "laravel",
         "eloquent",
         "statistics",
@@ -20,14 +21,19 @@
         "browser"
     ],
     "license": "MIT",
-    "homepage": "https://rinvex.com",
+    "homepage": "https://elastik.work",
     "support": {
-        "email": "help@rinvex.com",
-        "issues": "https://github.com/rinvex/laravel-statistics/issues",
-        "source": "https://github.com/rinvex/laravel-statistics",
-        "docs": "https://github.com/rinvex/laravel-statistics/blob/master/README.md"
+        "email": "help@elastik.work",
+        "issues": "https://github.com/elastikhq/laravel-statistics/issues",
+        "source": "https://github.com/elastikhq/laravel-statistics"
     },
     "authors": [
+        {
+            "name": "Shayne Bartlett",
+            "homepage": "https://elastik.work",
+            "email": "shayne@elastik.com",
+            "role": "Project Lead"
+        },
         {
             "name": "Rinvex LLC",
             "homepage": "https://rinvex.com",
@@ -37,7 +43,6 @@
             "name": "Abdelrahman Omran",
             "homepage": "https://omranic.com",
             "email": "me@omranic.com",
-            "role": "Project Lead"
         },
         {
             "name": "The Generous Laravel Community",
