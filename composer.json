@@ -1,5 +1,5 @@
 {
-    "name": "elastik/laravel-statistics",
+    "name": "elastik/elastik-stats",
     "description": "Elastik Statistics is a lightweight, yet detailed package for tracking and recording user visits across your Laravel application. With only one simple query per request, important data is being stored, and later a cronjob crush numbers to extract meaningful stories from within the haystack.",
     "type": "library",
     "keywords": [
