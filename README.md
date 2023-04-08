@@ -1,6 +1,6 @@
 # Elastik Statistics
 
-Forked from Elastik Statistics that was abandoned. Primarily for our own use but making it available for anyone else to use.
+Forked from Rinvex Statistics that was abandoned. Primarily for our own use but making it available for anyone else to use.
 
 ---
 
